@@ -69,6 +69,7 @@ mkdir $(pwd)/android_out/x86
 #arm build
 rm -rf build_linux
 
+export PLATFORM=android
 export SYSTEM=linux
 
 export CROSS_COMPILE=$BUILD_PATH/arm-${TYPE}-androideabi/bin/arm-linux-androideabi-
@@ -79,6 +80,7 @@ export AR=${CROSS}ar
 export RANLIB=${CROSS}ranlib
 export CFLAGS=${CROSS_CFLAGS}
 export LDFLAGS=${CROSS_LDFLAGS}
+
 gcc_version=$(${CC} --version)
 echo Using $gcc_version
 echo Compiler CC: $CC
@@ -99,13 +101,18 @@ rm cjdroute
 rm -rf build_linux
 
 export CROSS_COMPILE=$BUILD_PATH/i686-${TYPE}-androideabi/bin/i686-linux-android-
-export TARGET_ARCH=x64
+export PATH=$BUILD_PATH/i686-${TYPE}-androideabi/bin/:$PATH
 export CROSS=${CROSS_COMPILE}
-export CC=${CROSS}gcc
-export AR=${CROSS}ar
-export RANLIB=${CROSS}ranlib
+export TARGET_ARCH=x64
+
+export AR=i686-linux-android-ar
+export CC=i686-linux-android-gcc
+export CXX=i686-linux-android-g++
+export LINK=i686-linux-android-g++
+export RANLIB=i686-linux-android-ranlib
 export CFLAGS=${CROSS_CFLAGS}
 export LDFLAGS=${CROSS_LDFLAGS}
+
 gcc_version=$(${CC} --version)
 echo Using $gcc_version
 echo Compiler CC: $CC

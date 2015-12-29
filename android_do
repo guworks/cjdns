@@ -101,15 +101,14 @@ rm cjdroute
 rm -rf build_linux
 
 export CROSS_COMPILE=$BUILD_PATH/i686-${TYPE}-androideabi/bin/i686-linux-android-
-export PATH=$BUILD_PATH/i686-${TYPE}-androideabi/bin/:$PATH
 export CROSS=${CROSS_COMPILE}
 export TARGET_ARCH=x64
 
-export AR=i686-linux-android-ar
-export CC=i686-linux-android-gcc
-export CXX=i686-linux-android-g++
-export LINK=i686-linux-android-g++
-export RANLIB=i686-linux-android-ranlib
+export AR=${CROSS}ar
+export CC=${CROSS}gcc
+export CXX=${CROSS}g++
+export LINK=${CROSS}g++
+export RANLIB=${CROSS}ranlib
 export CFLAGS=${CROSS_CFLAGS}
 export LDFLAGS=${CROSS_LDFLAGS}
 
